@@ -13,5 +13,9 @@ describe "StaticPages" do
       visit '/static_pages/help'
       page.should have_content('Help page')
     end 
+    it "should have the content 'link'" do 
+      visit '/static_pages/help'
+      page.should have_content('link')
+    end
   end 
 end
