@@ -12,7 +12,7 @@ group :development, :test do
 end
 
 group :test do 
-  gem 'capybara'
+  gem 'capybara', '1.1.2'
 end 
 
 # Use SCSS for stylesheets
