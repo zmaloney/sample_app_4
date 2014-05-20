@@ -1,4 +1,7 @@
 # So, this module is where (all of) our application helper functions live.
+# Helpers are associated with rendering views, and application_helper.rb is the "master" helper, 
+# included in views by default. 
+
 module ApplicationHelper
   
   #Returns the full title on a per-page basis
