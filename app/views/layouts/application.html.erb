@@ -9,22 +9,7 @@
 	<%= csrf_meta_tags %>
 </head>
 <body>
-	<header class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-				<nav class="navbar navbar-default" role="navigation">
-					<ul class="nav navbar-nav navbar-left">
-						<li><%= link_to "sample app", '#', id: "logo"%></li>
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<li><%= link_to "Home", 	'#' %></li>
-						<li><%= link_to "Help", 	'#' %></li>
-						<li><%= link_to "Sign in", 	'#' %></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-	</header>
+	<%= render 'layouts/header' %>
 	<div class="container">
 		<%= yield%>
 	</div>		
