@@ -9,14 +9,25 @@ gem 'sqlite3'
 group :development, :test do 
   # Use rspec 
   gem 'rspec-rails'
+  #annoying content-length warning handled by adding webrick explicitly 
+  # per http://stackoverflow.com/questions/7082364/what-does-warn-could-not-determine-content-length-of-response-body-mean-and-h
+  gem 'webrick', '~> 1.3.1'
 end
 
 group :test do 
   gem 'capybara', '1.1.2'
 end 
 
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.2'
+# I took out the following group declaration as it seemed to be screwing something up. 
+# group :assets do 
+  # Use SCSS for stylesheets, which depends on SASS : 
+  gem 'sass', '~> 3.2.15'
+  # gem 'sass-rails', '~> 4.0.2'
+  # gem 'sass-rails'
+
+  #Let's use bootstrap-sass for styling, because awesome.
+  gem 'bootstrap-sass'
+# end 
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

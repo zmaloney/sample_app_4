@@ -1,5 +1,10 @@
 <% provide(:title, 'Home')%>
-<h1>Home</h1>
-<p>
-	Hello, this is the Home page speaking. 
-</p>
+<div class="center jumbotron">
+	<h1>Home</h1>
+	<h2>
+		Hello, this is the Home page speaking. 
+	</h2>
+	<%= link_to "Sign up now!", '#', class: "btn btn-large btn-primary" %>
+</div>
+
+<%= link_to image_tag("rails.png", alt:"Rails", size: "64"), 'http://rubyonrails.org/' %> <!-- NB image_tag helper here.>
