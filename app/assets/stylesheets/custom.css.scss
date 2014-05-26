@@ -59,6 +59,11 @@ p {
 	line-height: 1.7em; 
 }
 
+li_padded { 
+	padding-right: 5px; 
+	margin-right: 5px;
+}
+
 /* header */
 
 #logo { 
@@ -68,6 +73,39 @@ p {
 	}
 	
 .navbar { 
-	padding-right: 5px;
+	margin-left:0;
+	margin-right:0;
+	padding-left:0;
+	padding-right:0;
 }	
 
+/* footer */
+
+footer { 
+	margin-top: 45px; 
+	padding-top: 5px; 
+	border-top: 1px solid #eaeaea; 
+	color: #999;
+}
+
+footer a { 
+	color: #555; 
+}
+
+footer a:hover { 
+	color: #222;
+}
+
+footer small { 
+	float: left;
+}
+
+footer ul { 
+	float: right; 
+	list-style: none; 
+}
+
+footer ul li { 
+	float: left; 
+	margin-left: 10px; 
+}
