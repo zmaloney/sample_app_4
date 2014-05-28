@@ -1,7 +1,13 @@
 SampleApp4::Application.routes.draw do
-  get "static_pages/about"
-  get "static_pages/help"
-    get "static_pages/home"
+  #takes a page "alias" (ex: "/about_path", as used in static_pages_spec.rb) 
+  # and routes it to an action (#about) of a controller (static_pages)
+  # I can use the via: option to match multiple verbs, or just use the verb itself 
+  # instead of 'match'
+  match '/about_path', to: 'static_pages#about', via: [:get, :post]
+  match '/contact_path', to: 'static_pages#contact', via: [:get, :post]
+  match '/help_path', to: 'static_pages#help', via: [:get, :post]
+  match '/root_path', to: 'static_pages#home', via: [:get, :post]
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
