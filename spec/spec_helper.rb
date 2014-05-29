@@ -42,4 +42,5 @@ RSpec.configure do |config|
   
   # I added this on the advice of http://stackoverflow.com/questions/8862967/visit-method-not-found-in-my-rspec
   config.include Capybara::DSL
+
 end

@@ -2,13 +2,14 @@ require 'spec_helper'
 
 describe "StaticPages" do
   
+  # previously, I was using 'visit/root_path' but that never seemed to work. 
   describe "Home page" do
     it "should have the h1 content 'Home'" do
-      visit '/root_path'
+      visit '/'
       page.should have_selector('h1', :text => "Home")
     end
     it "should have the right title" do 
-      visit '/root_path'
+      visit '/'
       page.should have_selector('title', 
         :text => "| Home")
     end
