@@ -9,7 +9,7 @@ SampleApp4::Application.routes.draw do
   match '/about_path', to: 'static_pages#about', via: [:get, :post]
   match '/contact_path', to: 'static_pages#contact', via: [:get, :post]
   match '/help_path', to: 'static_pages#help', via: [:get, :post]
-  # match '/root_path', to: 'static_pages#home', via: [:get, :post]
+  match '/home_path', to: 'static_pages#home', via: [:get, :post]
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
