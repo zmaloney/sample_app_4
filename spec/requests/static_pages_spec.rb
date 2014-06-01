@@ -13,14 +13,14 @@ describe "StaticPages" do
   end
   
   describe "Help page" do 
-    before { visit '/help_path' }
+    before { visit help_path } #NB that we could also have done this with "before { visit '/help'}"
     it { should have_selector('h1', :text => "Help") }
     it { page.should have_content("link") }
     it { page.should have_selector('title', :text => "| Help") }
   end 
   
   describe "About page" do 
-    before { visit '/about_path' }
+    before { visit about_path }
     it "should have the h1 content 'About'" do 
       page.should have_selector('h1', :text => "About")
     end
@@ -31,7 +31,7 @@ describe "StaticPages" do
   end
 
   describe "Contact page" do 
-    before { visit '/contact_path' }
+    before { visit contact_path }
     it "should have h1 content 'Contact'" do 
       page.should have_selector('h1', :text => "Contact")
     end

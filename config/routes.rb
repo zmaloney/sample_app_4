@@ -7,11 +7,8 @@ SampleApp4::Application.routes.draw do
   # and routes it to an action (#about) of a controller (static_pages)
   # I can use the via: option to match multiple verbs, or just use the verb itself 
   # instead of 'match'
-  match '/about_path', to: 'static_pages#about', via: [:get, :post]
-  match '/contact_path', to: 'static_pages#contact', via: [:get, :post]
-  match '/help_path', to: 'static_pages#help', via: [:get, :post]
-  match '/home_path', to: 'static_pages#home', via: [:get, :post]
-  # Just for my own sanity, I'm going to map these without the _path suffix, as well. 
+  #NB that we get a named variable for free with each of these : 
+  # so we can use either '/about' or about_path (without quotes!) in a link_to method.
   match '/about', to: 'static_pages#about', via: [:get, :post]
   match '/contact', to: 'static_pages#contact', via: [:get, :post]
   match '/help', to: 'static_pages#help', via: [:get, :post]
