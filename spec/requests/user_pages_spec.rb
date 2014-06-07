@@ -3,6 +3,7 @@ require 'spec_helper'
 describe "UserPages" do
 
   #define 'page' as the subject of all our tests
+  # NB that 'page' is a reserved word, which we get for free. 
   subject { page }
   
   # previously, I was using 'visit/root_path' but that never seemed to work. 

@@ -6,12 +6,16 @@ gem 'rails', '4.0.4'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
+# per http://stackoverflow.com/questions/7270169/how-to-install-readline-for-rails-console
+gem 'rb-readline'
+
 group :development, :test do 
   # Use rspec 
   gem 'rspec-rails'
   #annoying content-length warning handled by adding webrick explicitly 
   # per http://stackoverflow.com/questions/7082364/what-does-warn-could-not-determine-content-length-of-response-body-mean-and-h
   gem 'webrick', '~> 1.3.1'
+  gem 'annotate' #to annotate our DB files
 end
 
 group :test do 
