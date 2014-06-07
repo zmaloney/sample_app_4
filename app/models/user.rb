@@ -30,4 +30,10 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i #Ruby convention : all caps = constant
   validates :email, format: { with: VALID_EMAIL_REGEX }
   
+  #in order to make sure that uniqueness works correctly on emails, 
+  # change emails to lowercase before saving. 
+  # We can do this by setting the before_save callback with a downcase function. 
+  # This is basically a belt-and-suspenders approach to handling the uniqueness problem -- it's dealt 
+  # with at the validates: level and at the saving level with the db ID constraint.
+  before_save { |user| user.email = email.downcase }
 end
