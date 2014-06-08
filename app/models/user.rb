@@ -19,12 +19,17 @@ class User < ActiveRecord::Base
   # which the Rails tutorial suggested I add. 
   # apparently, it's been "extracted out of Rails into a gem."
   
+  #the has_secure_password line gives us our password attributes for free (password, password_confirmation) 
+  # NB that password and password_confirmation are virtual -- only exist temporarily in memory. 
+  has_secure_password
+  
   # note that we're supporting these items in the spec, so 
   # if these validations fail, the spec will let us know that the validation isn't working correctly. 
   
   validates :name, presence: true, length: { maximum: 50 } #NB that 'validates' is just a method like any other.
   validates :email, presence: true #and let's do the same for email. 
   validates :email, uniqueness: { case_sensitive: false } #enforce case-sensitive uniqueness on emails; case_sensitive implies "uniqueness: true"
+  validates :password, presence: true, length: { minimum: 6 } #enforce a minimum password length of 6 
   
   #YUSSSSS it's regular expression time. Let's validate some emails. 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i #Ruby convention : all caps = constant

@@ -13,16 +13,26 @@ require 'spec_helper'
 
 describe User do
   #before we do anything else, set up a test user with the attributes we'll be requesting
-  before { @user = User.new(name: "Example User", email: "example@foo.com")}
+  before do 
+    @user = User.new(name: "Example User", email: "example@foo.com", password: "mypassword", password_confirmation: "mypassword")
+  end 
+  
   # and set 'it' to target the user we just created. 
   subject { @user }
   
   #test for existence of name and email attributes. 
   it { should respond_to(:name) } #we could also do this as @user.should respond_to(:name), which is less efficient, obvs.
   it { should respond_to(:email) }
+  #test for existence of password_digest attribute 
+  it { should respond_to(:password_digest) }
+  #and the two associated virtual attributes, which we can respond to because @user is still in scope : 
+  it { should respond_to(:password) }
+  it { should respond_to(:password_confirmation) } #the "confirm your new password attribute"
+  #finally, we should be able to use the "authenticate" method we got for free with "has_secure_password"
+  it { should respond_to(:authenticate) }
   
   #this should run validation on the user, which -should- be OK at this point. 
-  # Basically, just a sanity check -- this is the equivalent of @user.valid? in the console.
+  # Basically, just a sanity check to make sure all the required attributes have been set  -- this is the equivalent of @user.valid? in the console.
   it { should be_valid }
   
   #and set up a failing condition, to make sure it fails correctly. 
@@ -71,6 +81,34 @@ describe User do
       user_with_same_email.save
     end
     it { should_not be_valid }
+  end
+  
+  describe "when password is not present" do 
+    before { @user.password = @user.password_confirmation = " " }
+    it { should_not be_valid }
+  end 
+  
+  describe "return value of authenticate method" do 
+    before { @user.save } #save it first, since authenticate relies on the db entry
+    let(:found_user) { User.find_by_email(@user.email) }
+    
+    describe "with valid password" do 
+      it { should == found_user.authenticate(@user.password) }
+    end
+    
+    describe "with invalid password" do 
+      # "let" is just a convenient way to create local variables inside tests. 
+      let(:user_for_invalid_password) { found_user.authenticate("failure") } #force an invalid authentication
+      it { should_not == user_for_invalid_password } 
+      # "specify" is just a synonym for "it", but allows this to be more human-readable
+      specify { user_for_invalid_password.should be_false } 
+    end
+    
+    describe "with a password that's too short" do 
+      before { @user.password = @user.password_confirmation = "a" * 5 }
+      it { should be_invalid }
+    end
+    
   end
   
 end
