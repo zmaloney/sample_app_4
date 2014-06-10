@@ -16,6 +16,8 @@ group :development, :test do
   # per http://stackoverflow.com/questions/7082364/what-does-warn-could-not-determine-content-length-of-response-body-mean-and-h
   gem 'webrick', '~> 1.3.1'
   gem 'annotate' #to annotate our DB files
+  # Factory Girl implements factories to create objects and insert them in the db. 
+  gem 'factory_girl_rails'
 end
 
 group :test do 

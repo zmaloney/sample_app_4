@@ -1,5 +1,10 @@
 SampleApp4::Application.routes.draw do
-  get "users/new"
+  
+  #route for user display 
+  resources :users
+  #and because we've added the route for user display, we don't need the following : 
+  #get "users/new"
+  
   #special one here, to route root directly to the home method of the StaticPagesController.
   root to: 'static_pages#home'
   
