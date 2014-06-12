@@ -1,6 +1,10 @@
 SampleApp4::Application.routes.draw do
   
-  #route for user display 
+  #route for user display. 
+  # In fact, this adds a whole set of RESTful routes provided by the Users resource : 
+  # see page 280, Table 1, for a table of all the routes provided by this single declaration. 
+  # What we're really interested in is that it ensures a POST request to /users 
+  # is handled by the "create" action. 
   resources :users
   #and because we've added the route for user display, we don't need the following : 
   #get "users/new"
@@ -21,6 +25,8 @@ SampleApp4::Application.routes.draw do
   
   #and here are the user-page path(s) : 
   match '/signup', to: 'users#new', via: [:get, :post]
+  # where does users#new come from? Why, from the Users resource we defined earlier in this page -- 
+  # this path is one of the RESTful routes it provides. 
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
