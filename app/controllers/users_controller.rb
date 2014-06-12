@@ -12,10 +12,20 @@ class UsersController < ApplicationController
   
   def create 
     #see http://stackoverflow.com/questions/19860257/ruby-on-rails-activemodelforbiddenattributeserror-in-commentscontrollercrea
-    @user = User.new(params[:user].permit(:name, :email, :password))
+    flash[:notice] = "Create method invoked."
+    @user = User.new(params[:user].permit(:name, :email, :password, :password_confirmation))
+    if @user.valid? 
+      flash[:notice] = "User valid."
+    else
+      flash[:notice] = "User not valid."
+    end
+      
     if @user.save
       #Handle a successful save
+      flash[:notice] = 'User saved!'
+      redirect_to @user
     else
+      flash[:notice] = 'User not saved!'
       render 'new'
     end
   end
