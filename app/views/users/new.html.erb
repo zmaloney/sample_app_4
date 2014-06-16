@@ -4,7 +4,14 @@
 	<div class="span6 offset3">
 		<!-- The important thing in the following structure is that it generates a form with 
 		action="/users" and method="post", which we can see by running Firebug against the rendered form. -->
+		
+		<!-- NB that form_for automatically fills in the form with the attributes of the object, 
+		so we'll retain the attributes of a failed submission. -->
 		<%= form_for(@user) do |f| %>
+		
+			<!-- failed submit? Render a partial that shows error messages -->
+			<%= render 'shared/error_messages' %>
+		
 			<%= f.label :name %>
 			<%= f.text_field :name %>
 			

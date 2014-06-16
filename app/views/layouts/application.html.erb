@@ -11,6 +11,10 @@
 	<body>
 		<%= render 'layouts/header' %>
 		<div class="container">
+			<!-- this is kind of ugly, but allows us to show anything stored in the special "flash" hash -->
+			<% flash.each do |key, value| %>
+				<div class="alert alert-<%= key %>"><%= value %></div>
+			<% end %>
 			<%= yield %>
 		</div>	
 		<%= render 'layouts/footer'%>	

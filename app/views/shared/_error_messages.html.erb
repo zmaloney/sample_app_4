@@ -1,0 +1,14 @@
+<!-- This partial will only render anything if the @user object has errors. -->
+<!-- Note that Rails automatically wraps fields with errors in divs with CSS class "field_with_errors"" -->
+<% if @user.errors.any? %>
+	<div id="error_explanation">
+		<div class="alert alert-error"> 
+			The form contains <%= pluralize(@user.errors.count, "error") %>. 
+		</div>
+		<ul>
+			<% @user.errors.full_messages.each do |msg| %>
+				<li> * <%= msg %> </li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
