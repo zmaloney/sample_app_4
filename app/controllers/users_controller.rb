@@ -18,6 +18,10 @@ class UsersController < ApplicationController
     if @user.save
       #Handle a successful save
       flash[:success] = 'User saved!'
+      #So, how does this user thing work? Well, because we defined :users as a resource in routes.rb, 
+      # we get a whole bunch of routes, including this default redirect_to method 
+      # that can take an ActiveRecord as its parameter and automatically route to the show page 
+      # for that object. 
       redirect_to @user
     else
       # markup in _error_messages.html.erb shows any errors on this page. 

@@ -1,6 +1,7 @@
 SampleApp4::Application.routes.draw do
   
-  #route for user display. 
+  #Route for user display. Because we register :users as a resource, redirect_to automatically 
+  # routes to the show page for the user object. 
   # In fact, this adds a whole set of RESTful routes provided by the Users resource : 
   # see page 280, Table 1, for a table of all the routes provided by this single declaration. 
   # What we're really interested in is that it ensures a POST request to /users 
@@ -8,6 +9,9 @@ SampleApp4::Application.routes.draw do
   resources :users
   #and because we've added the route for user display, we don't need the following : 
   #get "users/new"
+  
+  #Similarly, set up "sessions" as a resource. 
+  resources :sessions, only: [:new, :create, :destroy]
   
   #special one here, to route root directly to the home method of the StaticPagesController.
   root to: 'static_pages#home'
@@ -25,6 +29,10 @@ SampleApp4::Application.routes.draw do
   
   #and here are the user-page path(s) : 
   match '/signup', to: 'users#new', via: [:get, :post]
+  #and the authentication (sessions) routes : 
+  match '/signin', to: 'sessions#new', via: [:get, :post]
+  match '/signout', to: 'sessions#destroy', via: [:delete] #restrict to HTTP DELETE request
+  
   # where does users#new come from? Why, from the Users resource we defined earlier in this page -- 
   # this path is one of the RESTful routes it provides. 
   
