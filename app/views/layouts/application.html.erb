@@ -12,8 +12,12 @@
 		<%= render 'layouts/header' %>
 		<div class="container">
 			<!-- this is kind of ugly, but allows us to show anything stored in the special "flash" hash -->
+			<!-- NB that it doesn't actually show errors, only the confirmation message styled with the "success" class. -->
 			<% flash.each do |key, value| %>
+			<!-- we can do this a different way, as seen below. 
 				<div class="alert alert-<%= key %>"><%= value %></div>
+			-->
+				<%= content_tag(:div, value, class: "alert alert-#{key}") %>
 			<% end %>
 			<%= yield %>
 		</div>	
