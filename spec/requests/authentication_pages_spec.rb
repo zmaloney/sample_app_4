@@ -13,14 +13,27 @@ describe "AuthenticationPages" do
       it { should have_selector('title',  text: 'Sign in') }
     
       #and ... does invalid info render an error message?
-      # We should see a div with classes "alert" and "alert-error"
-      it { should have_selector('div.alert.alert-error', text: 'Invalid') } 
+      # We should see a div with classes "alert" and "alert-danger"
+      it { should have_selector('div.alert.alert-danger', text: 'Invalid') } 
+    end
+    
+    #make sure our warning doesn't persist past the signin page. 
+    # This was happening when we submitted bad information and then clicked another link. 
+    describe "when subsequently visiting another page" do 
+      before do 
+        visit signin_path 
+        click_button "Sign in" #submit with no info
+        click_link "Home" 
+      end
+      it { should_not have_selector('div.alert.alert-danger') }
+      it { should have_selector('div.center.jumbotron', text: 'Home') }
     end
     
     # How about a success?
     describe "with valid information" do 
       let(:user) { FactoryGirl.create(:user) }
       before do 
+        visit signin_path
         fill_in "Email",      with: user.email
         fill_in "Password",   with: user.password
         click_button "Sign in"
@@ -36,6 +49,7 @@ describe "AuthenticationPages" do
       # ... and we should no longer show the 'sign in' link
       it { should_not have_link('Sign in', href: signin_path) } 
     end 
+    
   end
-  
+
 end

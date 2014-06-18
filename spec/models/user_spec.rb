@@ -28,6 +28,7 @@ describe "User" do
   #and the two associated virtual attributes, which we can respond to because @user is still in scope : 
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) } #the "confirm your new password attribute"
+  it { should respond_to(:remember_token) } #the session-related token
   #finally, we should be able to use the "authenticate" method we got for free with "has_secure_password"
   it { should respond_to(:authenticate) }
   
