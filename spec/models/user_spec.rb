@@ -109,7 +109,13 @@ describe "User" do
       before { @user.password = @user.password_confirmation = "a" * 5 }
       it { should be_invalid }
     end
-    
+  end
+  
+  describe "remember token" do 
+    before { @user.save }
+    its(:remember_token) { should_not be_blank }
+    #recall that the line above is equivalent to 
+    # it { @user.remember_token.should_not be_blank }
   end
   
 end

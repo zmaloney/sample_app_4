@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   
   #the has_secure_password line gives us our password attributes for free (password, password_confirmation) 
   # NB that password and password_confirmation are virtual -- only exist temporarily in memory. 
-  has_secure_password
+  has_secure_password  
   
   # note that we're supporting these items in the spec, so 
   # if these validations fail, the spec will let us know that the validation isn't working correctly. 
@@ -41,4 +41,13 @@ class User < ActiveRecord::Base
   # This is basically a belt-and-suspenders approach to handling the uniqueness problem -- it's dealt 
   # with at the validates: level and at the saving level with the db ID constraint.
   before_save { |user| user.email = email.downcase }
+  #and implement a before_save callback to create remember_token
+  before_save :create_remember_token
+  
+  #here's the private method for creating a remember token ... no need to expose it outside our class
+  private 
+    def create_remember_token
+      self.remember_token = SecureRandom.urlsafe_base64
+    end
+  
 end
