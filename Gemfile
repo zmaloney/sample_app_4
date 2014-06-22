@@ -61,6 +61,9 @@ end
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
 
+# Use launchy so we can save_and_open_page with Capybara
+gem 'launchy'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

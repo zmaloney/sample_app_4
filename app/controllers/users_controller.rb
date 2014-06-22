@@ -16,6 +16,8 @@ class UsersController < ApplicationController
     @user = User.new(params[:user].permit(:name, :email, :password, :password_confirmation))
       
     if @user.save
+      #Let's sign in the user automatically. 
+      sign_in @user
       #Handle a successful save
       flash[:success] = 'User saved!'
       #So, how does this user thing work? Well, because we defined :users as a resource in routes.rb, 

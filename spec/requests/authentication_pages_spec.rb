@@ -48,7 +48,15 @@ describe "AuthenticationPages" do
       it { should have_link('Sign out', href: signout_path) }
       # ... and we should no longer show the 'sign in' link
       it { should_not have_link('Sign in', href: signin_path) } 
-    end 
+      
+      describe "followed by signout" do 
+        before do 
+          click_link "Sign out" 
+        end
+        it { should have_link('Sign in') }
+      end # of "followed by signout" 
+      
+    end # of "with valid information"
     
   end
 

@@ -39,9 +39,21 @@ describe "UserPages" do
       end
       it "should create a user" do 
         expect { click_button submit }.to change(User, :count).by(1)
-      end
-    end
+      end # of "should create a user"
+      
+      describe "after saving the user" do 
+        before [:all] do 
+          click_button submit   
+          # NB that we need to install launchy (gem install launchy) before this method works : 
+          # save_and_open_page
+        end
+        let(:user) { User.find_by_email('user@example.com') }
+        it { should have_selector('title', text: user.name) }
+        it { should have_link('Sign out') }
+      end # of "after saving the user"
+      
+    end # of "with valid information"
 
-  end
+  end #of "signup"
 
 end
