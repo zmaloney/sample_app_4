@@ -22,6 +22,10 @@ end
 
 group :test do 
   gem 'capybara', '1.1.2'
+  # Use cucumber so we can run tests via the Gherkin syntax
+  gem 'cucumber-rails'
+  gem 'cucumber'
+  gem 'database_cleaner'
 end 
 
 # I took out the following group declaration as it seemed to be screwing something up. 
@@ -63,9 +67,6 @@ gem 'bcrypt'
 
 # Use launchy so we can save_and_open_page with Capybara
 gem 'launchy'
-
-# Use cucumber so we can run tests via the Gherkin syntax
-gem 'cucumber'
 
 # Use unicorn as the app server
 # gem 'unicorn'
