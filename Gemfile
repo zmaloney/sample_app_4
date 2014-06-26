@@ -64,6 +64,9 @@ gem 'bcrypt'
 # Use launchy so we can save_and_open_page with Capybara
 gem 'launchy'
 
+# Use cucumber so we can run tests via the Gherkin syntax
+gem 'cucumber'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
