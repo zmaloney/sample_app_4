@@ -1,6 +1,6 @@
 #So, this gets searched by all .feature files, right? 
 
-#Damn, this syntax is pretty excellent. 
+#Damn, this syntax is pretty excellent, but it's pretty well separated from the code that implements it.
 
 Given /^a user visits the signin page$/ do 
   visit signin_path

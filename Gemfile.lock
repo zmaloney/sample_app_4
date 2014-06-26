@@ -174,7 +174,6 @@ DEPENDENCIES
   bootstrap-sass
   capybara (= 1.1.2)
   coffee-rails (~> 4.0.0)
-  cucumber
   cucumber-rails
   database_cleaner
   factory_girl_rails

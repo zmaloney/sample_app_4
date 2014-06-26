@@ -14,7 +14,7 @@ describe "AuthenticationPages" do
     
       #and ... does invalid info render an error message?
       # We should see a div with classes "alert" and "alert-danger"
-      it { should have_selector('div.alert.alert-danger', text: 'Invalid') } 
+      it { should have_error_message('Invalid') } 
     end
     
     #make sure our warning doesn't persist past the signin page. 

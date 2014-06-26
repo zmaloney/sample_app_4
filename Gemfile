@@ -23,8 +23,7 @@ end
 group :test do 
   gem 'capybara', '1.1.2'
   # Use cucumber so we can run tests via the Gherkin syntax
-  gem 'cucumber-rails'
-  gem 'cucumber'
+  gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
 end 
 
