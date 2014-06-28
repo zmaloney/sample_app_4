@@ -10,6 +10,23 @@ class UsersController < ApplicationController
     @user = User.new
   end
   
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  def update 
+    @user = User.find(params[:id]) 
+    # OK, why does this fail ... 
+    # if @user.update_attributes(params[:user])
+    # and this works? 
+    if @user.update_attributes(user_params)
+      #Handle successful update
+    else
+      #override the default behavior, which would be to render the 'update' view. 
+      render 'edit' 
+    end 
+  end
+  
   def create 
     #see http://stackoverflow.com/questions/19860257/ruby-on-rails-activemodelforbiddenattributeserror-in-commentscontrollercrea
     flash[:notice] = "Create method invoked."
@@ -35,7 +52,8 @@ class UsersController < ApplicationController
   # This has to do with the pessimistic / optimistic way that Rails now handles attribute accessibility. 
   private
     def user_params
-      params.require(:user).permit(:name, :email, :password)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      #DUH -- this returns the last thing operated on ... in this case, params . 
     end
   
 end

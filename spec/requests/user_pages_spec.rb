@@ -55,5 +55,22 @@ describe "UserPages" do
     end # of "with valid information"
 
   end #of "signup"
-
-end
+  
+  describe "edit" do 
+    let (:user) { FactoryGirl.create(:user) }
+    before { visit edit_user_path(user) }
+    
+    describe "page" do 
+      it { should have_selector('h1',     text: "Update your profile") } 
+      it { should have_selector('title',  text: "Edit user") }
+      it { should have_link('change',     href: 'http://gravatar.com/emails') }
+    end # of "page"
+    
+    describe "with invalid information" do 
+      before { click_button "Save changes" }
+      it { should have_content('error') }
+    end # of "with invalid information" 
+    
+  end # of "edit" 
+  
+end # of tests
